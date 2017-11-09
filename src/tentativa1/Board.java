@@ -167,6 +167,7 @@ public class Board extends JPanel implements ActionListener {
         
         points = 0;       
         this.add(jButton1);
+        jButton1.grabFocus();
         
     }
      private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {    
