@@ -25,7 +25,7 @@ public class StartMenu extends JPanel implements ActionListener{
 	TAdapter listener;
 	ImageIcon labelImage = new ImageIcon(getClass().getResource("/resources/PressSpaceToPlayPNG.png"));
 	Image image = labelImage.getImage();
-	CopyBird frame;
+	FlappyDoge frame;
         AlphaComposite composite;
 	float alpha=1;
 	float alphaAnterior=1;
@@ -34,7 +34,7 @@ public class StartMenu extends JPanel implements ActionListener{
 
         
 	
-	StartMenu(CopyBird frame){
+	StartMenu(FlappyDoge frame){
             this.frame = frame;
             loadImage();
             setLayout(null);

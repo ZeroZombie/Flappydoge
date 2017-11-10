@@ -16,18 +16,18 @@ import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class CopyBird extends JFrame {
+public class FlappyDoge extends JFrame {
 	
 	JPanel menu;
 	URL urlColisao = Board.class.getResource("SomColisao.wav");
     URL urlPulo = Board.class.getResource("SomPulo.wav");
     
-    public CopyBird() {
+    public FlappyDoge() {
         menu = new StartMenu(this);
     	initUI();
     }
     
-    public CopyBird(int i) {
+    public FlappyDoge(int i) {
         menu = new Board(urlColisao,urlPulo);
     	initUI();
     }
@@ -38,13 +38,13 @@ public class CopyBird extends JFrame {
         setResizable(false);
         pack();
         
-        setTitle("Copy Bird");
+        setTitle("Flappy Doge");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public void switchPanel(){
     	this.dispose();
-    	CopyBird ex = new CopyBird(1);
+    	FlappyDoge ex = new FlappyDoge(1);
         ex.setVisible(true);
     }
 }

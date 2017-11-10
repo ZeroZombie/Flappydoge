@@ -8,7 +8,7 @@ public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                CopyBird ex = new CopyBird();
+                FlappyDoge ex = new FlappyDoge();
                 ex.setVisible(true);
             }
         });

@@ -37,7 +37,7 @@ public class Board extends JPanel implements ActionListener {
     javax.swing.JButton jButton1;
     private Image background;
     private Timer timer;
-    private Bird bird;
+    private Doge bird;
     private ArrayList<Wall> walls;
     private ArrayList<Integer> deleteWalls;
     private ArrayList<Rectangle> pointMark;
@@ -76,7 +76,7 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         loadImage();
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-        bird = new Bird(ICRAFT_X, ICRAFT_Y);
+        bird = new Doge(ICRAFT_X, ICRAFT_Y);
         walls = new ArrayList<>();
         timer = new Timer(DELAY, this);
         record = 0;

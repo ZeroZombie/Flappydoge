@@ -7,13 +7,13 @@ package tentativa1;
 
 import java.awt.event.KeyEvent;
 
-public class Bird extends Sprite {
+public class Doge extends Sprite {
 
     private double dy;
     private boolean subindo;
     private int tempoSubindo;
 
-    public Bird(int x, int y) {
+    public Doge(int x, int y) {
         super(x, y);
 
         initCraft();
