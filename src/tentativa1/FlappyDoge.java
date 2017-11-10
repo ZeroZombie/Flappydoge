@@ -36,8 +36,7 @@ public class FlappyDoge extends JFrame {
         add(menu);
         
         setResizable(false);
-        pack();
-        
+        pack();        
         setTitle("Flappy Doge");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
