@@ -94,7 +94,7 @@ public class Board extends JPanel implements ActionListener {
             }
         });
          
-        jButton1.setBounds(348, 320, buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
+        jButton1.setBounds(348, 440, buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
         initBoard();
     }
 
@@ -164,7 +164,15 @@ public class Board extends JPanel implements ActionListener {
         
         if (points>record)
             record=points;
-        
+        ImageIcon boxIcon = new ImageIcon("src/resources/box.png");
+        Image box = boxIcon.getImage();
+        g.drawImage(box, (800-boxIcon.getIconWidth())/2, 200, null);
+        String tempoString = new String(Float.toString(points));
+        String recordString = new String(Float.toString(record));
+        Font fonte = new Font("SansSerif", Font.PLAIN, 30);
+        g.setFont(fonte);
+        g.drawString(tempoString, ((800-boxIcon.getIconWidth())/2)+190, 270);
+        g.drawString(recordString, ((800-boxIcon.getIconWidth())/2)+190, 350);
         points = 0;       
         this.add(jButton1);
         jButton1.grabFocus();
@@ -182,7 +190,6 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        inGame();
         if (ingame){
         updateCraft();
         updateWalls();
@@ -214,12 +221,6 @@ public class Board extends JPanel implements ActionListener {
             walls.add(new Wall(x, baixo-750,1));
     }
     
-    private void inGame() {
-        
-        if (!ingame) {
-            timer.stop();
-        }
-    }
 
     private void updateCraft() {
 
@@ -256,6 +257,7 @@ public class Board extends JPanel implements ActionListener {
             Rectangle r2 = wall.getBounds();
             if (r3.intersects(r2)) {
                 ingame = false;
+                timer.stop();
                 somColisao.play();
             }
         }

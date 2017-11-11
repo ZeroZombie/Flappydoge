@@ -22,6 +22,8 @@ import javax.swing.Timer;
 
 public class StartMenu extends JPanel implements ActionListener{
 	private Image background;
+        private ImageIcon titleIcon = new ImageIcon("src/resources/Title.png");
+        private Image Title = titleIcon.getImage();
 	TAdapter listener;
 	ImageIcon labelImage = new ImageIcon(getClass().getResource("/resources/PressSpaceToPlayPNG.png"));
 	Image image = labelImage.getImage();
@@ -36,22 +38,20 @@ public class StartMenu extends JPanel implements ActionListener{
 	
 	StartMenu(FlappyDoge frame){
             this.frame = frame;
-            loadImage();
             setLayout(null);
             setFocusable(true);
             setPreferredSize(new Dimension(800, 600));
             listener = new TAdapter();
             addKeyListener(listener);
             meuTimer.start();
+            ImageIcon ii = new ImageIcon("src/resources/background.png");
+            background = ii.getImage();
 	}
-	
-	private void loadImage(){
-		ImageIcon ii = new ImageIcon("src/resources/backgroundStart.jpeg");
-        background = ii.getImage();
-	}
+        
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(background, 0, 0, null);
+                g.drawImage(Title, (800-titleIcon.getIconWidth())/2, 70, null);
 		Graphics2D g2d = (Graphics2D) g;
 		composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
 		g2d.setComposite(composite);
