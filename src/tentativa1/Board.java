@@ -49,10 +49,9 @@ public class Board extends JPanel implements ActionListener {
     private final int B_WIDTH = 800;
     private final int B_HEIGHT = 600;
     private final int DELAY = 10;
-    private long startTime;
-    private long endTime; 
-    private float points;
-    private float record;
+    private Score points;
+    //private float points;
+    //private float record;
     private float generator;
     private URL urlColisao;
     private URL urlPulo;
@@ -79,7 +78,7 @@ public class Board extends JPanel implements ActionListener {
         bird = new Doge(ICRAFT_X, ICRAFT_Y);
         walls = new ArrayList<>();
         timer = new Timer(DELAY, this);
-        record = 0;
+        points = new Score();
         
         jButton1 = new javax.swing.JButton();
         //jButton1.setText("Reiniciar");
@@ -102,12 +101,11 @@ public class Board extends JPanel implements ActionListener {
         velocidade = 1;
         intervalo = 300;
         generator = 0;
-        points = 0;
+        points.setPoints(0);
         ingame = true;
-        startTime = System.currentTimeMillis();
         gerar(500);
         gerar(800);
-        
+  
         timer.start();
     }
     
@@ -152,8 +150,8 @@ public class Board extends JPanel implements ActionListener {
         }
 
         g.setColor(Color.WHITE);
-        g.drawString("Time: " + (int)points, 5, 15);
-        g.drawString("Record: " + record, 5, 30);
+        g.drawString("Score: " + points.getPoints(), 5, 15);
+        g.drawString("Record: " + points.getRecord(), 5, 30);
     }
 
     private void drawGameOver(Graphics g) throws InterruptedException {        
@@ -162,18 +160,18 @@ public class Board extends JPanel implements ActionListener {
         gameOverLabel.setBounds((800-gameOverIcon.getIconWidth())/2, 100, gameOverIcon.getIconWidth(), gameOverIcon.getIconHeight());
         add(gameOverLabel);
         
-        if (points>record)
-            record=points;
+        if (points.getPoints() > points.getRecord())
+            points.setRecord(points.getPoints());
         ImageIcon boxIcon = new ImageIcon("src/resources/box.png");
         Image box = boxIcon.getImage();
         g.drawImage(box, (800-boxIcon.getIconWidth())/2, 200, null);
-        String tempoString = new String(Float.toString(points));
-        String recordString = new String(Float.toString(record));
+        String tempoString = new String(Float.toString(points.getPoints()));
+        String recordString = new String(Float.toString(points.getRecord()));
         Font fonte = new Font("SansSerif", Font.PLAIN, 30);
         g.setFont(fonte);
         g.drawString(tempoString, ((800-boxIcon.getIconWidth())/2)+190, 270);
         g.drawString(recordString, ((800-boxIcon.getIconWidth())/2)+190, 350);
-        points = 0;       
+        points.setPoints(0);       
         this.add(jButton1);
         jButton1.grabFocus();
         
@@ -191,25 +189,25 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (ingame){
-        updateCraft();
-        updateWalls();
+            updateCraft();
+            updateWalls();
 
-        checkCollisions();
-        
-        generator +=1;
-        if(generator >= intervalo){
-        	generator=0;
-        	gerar(800);
-        }
+            checkCollisions();
+
+            generator +=1;
+            if(generator >= intervalo){
+                    generator=0;
+                    gerar(800);
+            }
         }
         
         repaint();
     }
     
     private void pontuar(){
-        points += 0.5;
-        if (points%5==0 && points<=20){
-            velocidade+=1;
+        points.addPoint();
+        if (points.getPoints()%5 == 0 && points.getPoints() <= 40){
+            velocidade += 1;
             intervalo -= 50;
         }
     }
@@ -217,8 +215,8 @@ public class Board extends JPanel implements ActionListener {
     private void gerar(int x){
             Random numero = new Random();
             int baixo = 90+numero.nextInt(500);
-            walls.add(new Wall(x, baixo,2));
-            walls.add(new Wall(x, baixo-750,1));
+            walls.add(new Wall(x, baixo, 2, true));
+            walls.add(new Wall(x, baixo-750, 1, false));
     }
     
 
