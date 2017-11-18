@@ -5,18 +5,18 @@
  */
 package tentativa1;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.util.ArrayList;
 /**
  *
  * @author pepej
  */
 public class Wall extends Sprite {
-    private int originalX;
     private boolean visible;
     private boolean passada;
     
     public Wall(int x, int y, int lado) {
         super (x,y);
-        this.originalX = x;
         initWall(lado);
         visible = true;
         passada = false;
@@ -45,6 +45,16 @@ public class Wall extends Sprite {
     
     public boolean getVisible (){
         return visible;
+    }
+    
+    public static boolean colide(ArrayList<Wall> walls, Rectangle jogador){
+        for (Wall wall : walls) {
+            Rectangle parede = wall.getBounds();
+            if (parede.intersects(jogador)) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }
