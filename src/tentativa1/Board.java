@@ -170,6 +170,7 @@ public class Board extends JPanel implements ActionListener {
         g.drawImage(box, (800-boxIcon.getIconWidth())/2, 200, null);
         String recordPontos = Float.toString(points.getRecord()[0].getPontos());
         String recordJogador = points.getRecord()[0].getJogador();
+
         Font fonte = new Font("SansSerif", Font.PLAIN, 30);
         g.setFont(fonte);
         g.drawString(recordPontos, ((800-boxIcon.getIconWidth())/2)+190, 270);
