@@ -40,7 +40,6 @@ public class Board extends JPanel implements ActionListener {
     private Doge bird;
     private ArrayList<Wall> walls;
     private ArrayList<Integer> deleteWalls;
-    private ArrayList<Rectangle> pointMark;
     private boolean ingame;
     private float intervalo;
     private int velocidade;
@@ -50,8 +49,6 @@ public class Board extends JPanel implements ActionListener {
     private final int B_HEIGHT = 600;
     private final int DELAY = 10;
     private Score points;
-    //private float points;
-    //private float record;
     private float generator;
     private URL urlColisao;
     private URL urlPulo;
@@ -103,9 +100,11 @@ public class Board extends JPanel implements ActionListener {
         generator = 0;
         points.setPoints(0);
         ingame = true;
-        gerar(500);
-        gerar(800);
-  
+
+        Gerador.gerarParedes(walls,500);
+        Gerador.gerarParedes(walls,800);
+        
+
         timer.start();
     }
     
@@ -192,13 +191,15 @@ public class Board extends JPanel implements ActionListener {
             updateCraft();
             updateWalls();
 
-            checkCollisions();
 
-            generator +=1;
-            if(generator >= intervalo){
-                    generator=0;
-                    gerar(800);
-            }
+        checkCollisions();
+        
+        generator +=1;
+        if(generator >= intervalo){
+        	generator=0;
+        	Gerador.gerarParedes(walls,800);
+        }
+
         }
         
         repaint();
@@ -211,14 +212,7 @@ public class Board extends JPanel implements ActionListener {
             intervalo -= 50;
         }
     }
-    
-    private void gerar(int x){
-            Random numero = new Random();
-            int baixo = 90+numero.nextInt(500);
-            walls.add(new Wall(x, baixo, 2, true));
-            walls.add(new Wall(x, baixo-750, 1, false));
-    }
-    
+
 
     private void updateCraft() {
 
@@ -249,18 +243,13 @@ public class Board extends JPanel implements ActionListener {
     	if (!ingame){
     		return;
     	}
-        Rectangle r3 = bird.getBounds();
-
-        for (Wall wall : walls) {
-            Rectangle r2 = wall.getBounds();
-            if (r3.intersects(r2)) {
-                ingame = false;
-                timer.stop();
-                somColisao.play();
-            }
-        }
+        Rectangle colisaoJogador = bird.getBounds();
         
-
+        if(Wall.colide(walls,colisaoJogador)){
+            ingame = false;
+            timer.stop();
+            somColisao.play();
+        }
     }
 
     private class TAdapter extends KeyAdapter {
