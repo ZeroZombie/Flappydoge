@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author pepej
  */
-public class Gerador {
+public abstract class Gerador {
     public static void gerarParedes(ArrayList<Wall> walls,int x){
         Random numero = new Random();
         int baixo = 90+numero.nextInt(500);

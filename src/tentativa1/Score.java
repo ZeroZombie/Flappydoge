@@ -5,37 +5,55 @@
  */
 package tentativa1;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Beatriz
  */
 public class Score {
-    private int points;
-    private int record;
+    private Points[] records;
+    private int point;
+ 
+    
     
     Score() {
-        points = 0;
-        record = 0;
+        records = new Points[3];
+        point = 0;
     }
 
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public int getRecord() {
-        return record;
-    }
-
-    public void setRecord(int record) {
-        this.record = record;
+    public Points[] getRecord() {
+        return records;
     }
     
-    public void addPoint() {
-        points ++;
+    public int getPoints(){
+        return point;
     }
+    
+    public void addPoints(){
+        point ++;
+    }
+    
+    public void setPoints(int point) {
+        this.point = point;
+    }
+    
+    public void setRecord() {
+       for(int cont=0; cont<3; cont++) {
+          if(records[cont]==null || records[cont].getPontos()<point){
+              for (int subs=2; subs> cont; subs--){
+                  records[subs] = records[subs-1];
+              }
+              Points novo = new Points(JOptionPane.showInputDialog(null, "Insira seu nome:"),point);
+              records[cont] = novo;
+              break;
+          } 
+       }
+        
+    }
+
+
+
     
 }
