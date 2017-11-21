@@ -148,9 +148,17 @@ public class Board extends JPanel implements ActionListener {
                 g.drawImage(a.getImage(), a.getX(), a.getY(), this);
         }
 
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK);
         g.drawString("Score: " + points.getPoints(), 5, 15);
-        g.drawString("Record: " + points.getRecord(), 5, 30);
+        g.drawString("Record: " + 
+                (points.getRecord()[0] == null? "" : points.getRecord()[0].getJogador()),
+                 5, 30);
+        g.drawString("Record: " + 
+                (points.getRecord()[1] == null? "" : points.getRecord()[1].getJogador()),
+                 5, 45);
+        g.drawString("Record: " + 
+                (points.getRecord()[2] == null? "" : points.getRecord()[2].getJogador()),
+                 5, 60);
     }
 
     private void drawGameOver(Graphics g) throws InterruptedException {        
@@ -158,14 +166,11 @@ public class Board extends JPanel implements ActionListener {
         g.drawImage(background, 0, 0, null);
         gameOverLabel.setBounds((800-gameOverIcon.getIconWidth())/2, 100, gameOverIcon.getIconWidth(), gameOverIcon.getIconHeight());
         add(gameOverLabel);
-        
-        if (points.getPoints() > points.getRecord())
-            points.setRecord(points.getPoints());
         ImageIcon boxIcon = new ImageIcon("src/resources/box.png");
         Image box = boxIcon.getImage();
         g.drawImage(box, (800-boxIcon.getIconWidth())/2, 200, null);
-        String tempoString = new String(Float.toString(points.getPoints()));
-        String recordString = new String(Float.toString(points.getRecord()));
+        String tempoString = new String(Float.toString(points.getRecord()[0].getPontos()));
+        String recordString = new String(points.getRecord()[0].getJogador());
         Font fonte = new Font("SansSerif", Font.PLAIN, 30);
         g.setFont(fonte);
         g.drawString(tempoString, ((800-boxIcon.getIconWidth())/2)+190, 270);
@@ -206,7 +211,7 @@ public class Board extends JPanel implements ActionListener {
     }
     
     private void pontuar(){
-        points.addPoint();
+        points.addPoints();
         if (points.getPoints()%5 == 0 && points.getPoints() <= 40){
             velocidade += 1;
             intervalo -= 50;
@@ -247,6 +252,7 @@ public class Board extends JPanel implements ActionListener {
         
         if(Wall.colide(walls,colisaoJogador)){
             ingame = false;
+            points.setRecord();
             timer.stop();
             somColisao.play();
         }
