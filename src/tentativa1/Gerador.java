@@ -16,7 +16,7 @@ public class Gerador {
     public static void gerarParedes(ArrayList<Wall> walls,int x){
         Random numero = new Random();
         int baixo = 90+numero.nextInt(500);
-        walls.add(new Wall(x, baixo,2));
-        walls.add(new Wall(x, baixo-750,1));
+        walls.add(new Wall(x, baixo,2,false));
+        walls.add(new Wall(x, baixo-750,1,true));
     }
 }
