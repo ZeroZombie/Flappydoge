@@ -37,7 +37,7 @@ public class Board extends JPanel implements ActionListener {
     javax.swing.JButton jButton1;
     private Image background;
     private Timer timer;
-    private Doge bird;
+    private Doge doge;
     private ArrayList<Wall> walls;
     private ArrayList<Integer> deleteWalls;
     private boolean ingame;
@@ -72,13 +72,12 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         loadImage();
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-        bird = new Doge(ICRAFT_X, ICRAFT_Y);
+        doge = new Doge(ICRAFT_X, ICRAFT_Y);
         walls = new ArrayList<>();
         timer = new Timer(DELAY, this);
         points = new Score();
         
         jButton1 = new javax.swing.JButton();
-        //jButton1.setText("Reiniciar");
         ImageIcon buttonIcon = new ImageIcon(getClass().getResource("/resources/BotaoProntoPNG.png"));
         jButton1.setIcon(buttonIcon);
         jButton1.setBorder(BorderFactory.createEmptyBorder());
@@ -142,7 +141,7 @@ public class Board extends JPanel implements ActionListener {
 
     private void drawObjects(Graphics g) {
 
-        g.drawImage(bird.getImage(), bird.getX(), bird.getY(), this);
+        g.drawImage(doge.getImage(), doge.getX(), doge.getY(), this);
         
         for (Wall a : walls) {
                 g.drawImage(a.getImage(), a.getX(), a.getY(), this);
@@ -169,12 +168,17 @@ public class Board extends JPanel implements ActionListener {
         ImageIcon boxIcon = new ImageIcon("src/resources/box.png");
         Image box = boxIcon.getImage();
         g.drawImage(box, (800-boxIcon.getIconWidth())/2, 200, null);
-        String tempoString = new String(Float.toString(points.getRecord()[0].getPontos()));
-        String recordString = new String(points.getRecord()[0].getJogador());
+        String recordPontos = Float.toString(points.getRecord()[0].getPontos());
+        String recordJogador = points.getRecord()[0].getJogador();
+
         Font fonte = new Font("SansSerif", Font.PLAIN, 30);
         g.setFont(fonte);
-        g.drawString(tempoString, ((800-boxIcon.getIconWidth())/2)+190, 270);
-        g.drawString(recordString, ((800-boxIcon.getIconWidth())/2)+190, 350);
+        g.drawString(recordPontos, ((800-boxIcon.getIconWidth())/2)+190, 270);
+        g.drawString(recordJogador, ((800-boxIcon.getIconWidth())/2)+240, 270);
+        g.drawString(recordPontos, ((800-boxIcon.getIconWidth())/2)+190, 350);
+        g.drawString(recordJogador, ((800-boxIcon.getIconWidth())/2)+240, 350);
+        g.drawString(recordPontos, ((800-boxIcon.getIconWidth())/2)+190, 430);
+        g.drawString(recordJogador, ((800-boxIcon.getIconWidth())/2)+240, 430);
         points.setPoints(0);       
         this.add(jButton1);
         jButton1.grabFocus();
@@ -185,7 +189,7 @@ public class Board extends JPanel implements ActionListener {
         remove(gameOverLabel);
         walls.clear();
         deleteWalls.clear();
-        bird.y = ICRAFT_Y;
+        doge.y = ICRAFT_Y;
         initBoard();
     }
 
@@ -221,7 +225,7 @@ public class Board extends JPanel implements ActionListener {
 
     private void updateCraft() {
 
-            bird.move();
+            doge.move();
     }
 
     private void updateWalls() {
@@ -248,7 +252,7 @@ public class Board extends JPanel implements ActionListener {
     	if (!ingame){
     		return;
     	}
-        Rectangle colisaoJogador = bird.getBounds();
+        Rectangle colisaoJogador = doge.getBounds();
         
         if(Wall.colide(walls,colisaoJogador)){
             ingame = false;
@@ -263,7 +267,7 @@ public class Board extends JPanel implements ActionListener {
         @Override
         public void keyReleased(KeyEvent e) {
             if (ingame){
-        	bird.keyPressed(e);
+        	doge.keyPressed(e);
             }
         }
     }
