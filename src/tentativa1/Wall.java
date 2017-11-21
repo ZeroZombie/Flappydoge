@@ -15,11 +15,11 @@ public class Wall extends Sprite {
     private boolean visible;
     private boolean passada;
     
-    public Wall(int x, int y, int lado) {
+    public Wall(int x, int y, int lado, boolean passada) {
         super (x,y);
         initWall(lado);
         visible = true;
-        passada = false;
+        this.passada = passada;
     }
     private void initWall(int lado) {
         if (lado%2==0)
