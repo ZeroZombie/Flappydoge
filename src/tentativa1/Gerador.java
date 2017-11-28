@@ -19,4 +19,17 @@ public abstract class Gerador {
         walls.add(new Wall(x, baixo,2,false));
         walls.add(new Wall(x, baixo-750,1,true));
     }
+    public static Bonus gerarBonus(int x){
+        Random numero = new Random();
+        int y = 100+numero.nextInt(500);
+        System.out.println(y);
+        return new Bonus(x,y);
+    }
+    public static String imageBonus(){
+        String path = "src/resources/copybird0";
+        Random numero = new Random();
+        int valor = numero.nextInt(5);
+        path += valor+".png";
+        return path;
+    }
 }

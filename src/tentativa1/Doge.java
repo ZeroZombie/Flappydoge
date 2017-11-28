@@ -5,6 +5,8 @@
  */
 package tentativa1;
 
+import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 public class Doge extends Sprite {
@@ -54,5 +56,14 @@ public class Doge extends Sprite {
             subindo = true;
             tempoSubindo = 0;
 
+    }
+    public void gotBonus(Bonus bonus){
+        if (this.getBounds().intersects(bonus.getBounds())){
+            setImage(bonus.getImage());
+        }
+    }
+    
+    private void setImage(Image image){
+        this.image = image;
     }
 }
