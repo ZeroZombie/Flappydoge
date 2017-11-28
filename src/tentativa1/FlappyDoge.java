@@ -18,8 +18,8 @@ import javax.swing.JPanel;
 
 public class FlappyDoge extends JFrame {
 	
-	JPanel menu;
-	URL urlColisao = Board.class.getResource("SomColisao.wav");
+    JPanel menu;
+    URL urlColisao = Board.class.getResource("SomColisao.wav");
     URL urlPulo = Board.class.getResource("SomPulo.wav");
     
     public FlappyDoge() {
@@ -42,8 +42,10 @@ public class FlappyDoge extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public void switchPanel(){
-    	this.dispose();
-    	FlappyDoge ex = new FlappyDoge(1);
-        ex.setVisible(true);
+    	remove(menu);
+        menu = new Board(urlColisao,urlPulo);
+        add(menu);
+        menu.requestFocusInWindow();
+        pack();
     }
 }

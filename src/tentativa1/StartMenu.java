@@ -24,7 +24,7 @@ public class StartMenu extends JPanel implements ActionListener{
 	private Image background;
         private ImageIcon titleIcon = new ImageIcon("src/resources/Title.png");
         private Image Title = titleIcon.getImage();
-	TAdapter listener;
+	Adapter listener;
 	ImageIcon labelImage = new ImageIcon(getClass().getResource("/resources/PressSpaceToPlayPNG.png"));
 	Image image = labelImage.getImage();
 	FlappyDoge frame;
@@ -41,7 +41,7 @@ public class StartMenu extends JPanel implements ActionListener{
             setLayout(null);
             setFocusable(true);
             setPreferredSize(new Dimension(800, 600));
-            listener = new TAdapter();
+            listener = new Adapter();
             addKeyListener(listener);
             meuTimer.start();
             ImageIcon ii = new ImageIcon("src/resources/background.png");
@@ -67,24 +67,19 @@ public class StartMenu extends JPanel implements ActionListener{
 		repaint();
 	}
 	
-	private class TAdapter extends KeyAdapter {	
+	private class Adapter extends KeyAdapter {	
         @Override
-        public void keyReleased(KeyEvent e) {
-        	keyPressede(e);
+        public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_SPACE ) {
+        	start();
+            }
         }
     }
 	
-	public void keyPressede(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_SPACE ) {
+	public void start() {
         	meuTimer.stop();
-        	this.setVisible(false);
-        	this.removeKeyListener(listener);
-        	frame.switchPanel();
-        }
-
-
+                this.removeKeyListener(listener);
+        	frame.switchPanel();     
 	}
 }

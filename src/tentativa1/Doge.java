@@ -48,16 +48,11 @@ public class Doge extends Sprite {
         }
     }
 
-    public void keyPressed(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_SPACE ) {
+    public void jump() {
             Board.getSomPulo().play();
             dy = -3;
             subindo = true;
             tempoSubindo = 0;
-        }
 
     }
 }

@@ -72,6 +72,7 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         loadImage();
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        this.setEnabled(true);
         doge = new Doge(ICRAFT_X, ICRAFT_Y);
         walls = new ArrayList<>();
         timer = new Timer(DELAY, this);
@@ -206,7 +207,7 @@ public class Board extends JPanel implements ActionListener {
         generator +=1;
         if(generator >= intervalo){
         	generator=0;
-        	Gerador.gerarParedes(walls,800);
+                    Gerador.gerarParedes(walls,800);
         }
 
         }
@@ -266,8 +267,9 @@ public class Board extends JPanel implements ActionListener {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            if (ingame){
-        	doge.keyPressed(e);
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_SPACE && ingame){
+        	doge.jump();
             }
         }
     }
