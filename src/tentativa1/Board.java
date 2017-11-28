@@ -35,6 +35,7 @@ import java.net.URL;
 public class Board extends JPanel implements ActionListener {
     
     javax.swing.JButton jButton1;
+    private Bonus bonus;
     private Image background;
     private Timer timer;
     private Doge doge;
@@ -100,7 +101,7 @@ public class Board extends JPanel implements ActionListener {
         generator = 0;
         points.setPoints(0);
         ingame = true;
-
+        bonus = new Bonus(-50,-50);
         Gerador.gerarParedes(walls,500);
         Gerador.gerarParedes(walls,800);
         
@@ -147,6 +148,8 @@ public class Board extends JPanel implements ActionListener {
         for (Wall a : walls) {
                 g.drawImage(a.getImage(), a.getX(), a.getY(), this);
         }
+        
+        g.drawImage(bonus.getImage(), bonus.getX(), bonus.getY(), this);
 
         g.setColor(Color.BLACK);
         g.drawString("Score: " + points.getPoints(), 5, 15);
@@ -200,14 +203,17 @@ public class Board extends JPanel implements ActionListener {
         if (ingame){
             updateCraft();
             updateWalls();
-
+            updateBonus();
+            
 
         checkCollisions();
         
         generator +=1;
         if(generator >= intervalo){
-        	generator=0;
-                    Gerador.gerarParedes(walls,800);
+            generator=0;
+            Gerador.gerarParedes(walls,800);
+            if (points.getPoints()%5==0)
+                bonus = Gerador.gerarBonus(1000);
         }
 
         }
@@ -227,6 +233,11 @@ public class Board extends JPanel implements ActionListener {
     private void updateCraft() {
 
             doge.move();
+    }
+    
+    private void updateBonus() {
+
+            bonus.move(velocidade);
     }
 
     private void updateWalls() {
@@ -254,7 +265,7 @@ public class Board extends JPanel implements ActionListener {
     		return;
     	}
         Rectangle colisaoJogador = doge.getBounds();
-        
+        doge.gotBonus(bonus);
         if(Wall.colide(walls,colisaoJogador)){
             ingame = false;
             points.setRecord();
