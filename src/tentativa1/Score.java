@@ -21,6 +21,12 @@ public class Score {
     Score() {
         records = new Points[3];
         point = 0;
+        Points recorde0 = new Points("",0);
+        Points recorde1 = new Points("",0);
+        Points recorde2 = new Points("",0);
+        records[0]=recorde0;
+        records[1]=recorde1;
+        records[2]=recorde2;
     }
 
     public Points[] getRecord() {
@@ -47,7 +53,7 @@ public class Score {
               }
               Points novo = new Points(JOptionPane.showInputDialog(null, "Insira seu nome:"),point);
               records[cont] = novo;
-              break;
+              return;
           } 
        }
         

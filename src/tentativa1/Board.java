@@ -171,15 +171,19 @@ public class Board extends JPanel implements ActionListener {
         g.drawImage(box, (800-boxIcon.getIconWidth())/2, 200, null);
         String recordPontos = Float.toString(points.getRecord()[0].getPontos());
         String recordJogador = points.getRecord()[0].getJogador();
+        String recordPontos2 = Float.toString(points.getRecord()[1].getPontos());
+        String recordJogador2 = points.getRecord()[1].getJogador();
+        String recordPontos3 = Float.toString(points.getRecord()[2].getPontos());
+        String recordJogador3 = points.getRecord()[2].getJogador();
 
         Font fonte = new Font("SansSerif", Font.PLAIN, 30);
         g.setFont(fonte);
         g.drawString(recordPontos, ((800-boxIcon.getIconWidth())/2)+190, 270);
         g.drawString(recordJogador, ((800-boxIcon.getIconWidth())/2)+240, 270);
-        g.drawString(recordPontos, ((800-boxIcon.getIconWidth())/2)+190, 350);
-        g.drawString(recordJogador, ((800-boxIcon.getIconWidth())/2)+240, 350);
-        g.drawString(recordPontos, ((800-boxIcon.getIconWidth())/2)+190, 430);
-        g.drawString(recordJogador, ((800-boxIcon.getIconWidth())/2)+240, 430);
+        g.drawString(recordPontos2, ((800-boxIcon.getIconWidth())/2)+190, 350);
+        g.drawString(recordJogador2, ((800-boxIcon.getIconWidth())/2)+240, 350);
+        g.drawString(recordPontos3, ((800-boxIcon.getIconWidth())/2)+190, 430);
+        g.drawString(recordJogador3, ((800-boxIcon.getIconWidth())/2)+240, 430);
         points.setPoints(0);       
         this.add(jButton1);
         jButton1.grabFocus();
@@ -257,9 +261,9 @@ public class Board extends JPanel implements ActionListener {
         
         if(Wall.colide(walls,colisaoJogador)){
             ingame = false;
+            somColisao.play();
             points.setRecord();
             timer.stop();
-            somColisao.play();
         }
     }
 
