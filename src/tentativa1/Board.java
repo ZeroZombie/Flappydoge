@@ -91,7 +91,7 @@ public class Board extends JPanel implements ActionListener {
             }
         });
          
-        jButton1.setBounds(348, 440, buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
+        jButton1.setBounds(348, 500, buttonIcon.getIconWidth(), buttonIcon.getIconHeight());
         initBoard();
     }
 
@@ -169,7 +169,7 @@ public class Board extends JPanel implements ActionListener {
         g.drawImage(background, 0, 0, null);
         gameOverLabel.setBounds((800-gameOverIcon.getIconWidth())/2, 100, gameOverIcon.getIconWidth(), gameOverIcon.getIconHeight());
         add(gameOverLabel);
-        ImageIcon boxIcon = new ImageIcon("src/resources/box.png");
+        ImageIcon boxIcon = new ImageIcon("src/resources/CaixaPontos.png");
         Image box = boxIcon.getImage();
         g.drawImage(box, (800-boxIcon.getIconWidth())/2, 200, null);
         String recordPontos = Float.toString(points.getRecord()[0].getPontos());
@@ -179,14 +179,16 @@ public class Board extends JPanel implements ActionListener {
         String recordPontos3 = Float.toString(points.getRecord()[2].getPontos());
         String recordJogador3 = points.getRecord()[2].getJogador();
 
-        Font fonte = new Font("SansSerif", Font.PLAIN, 30);
-        g.setFont(fonte);
-        g.drawString(recordPontos, ((800-boxIcon.getIconWidth())/2)+190, 270);
-        g.drawString(recordJogador, ((800-boxIcon.getIconWidth())/2)+240, 270);
-        g.drawString(recordPontos2, ((800-boxIcon.getIconWidth())/2)+190, 350);
-        g.drawString(recordJogador2, ((800-boxIcon.getIconWidth())/2)+240, 350);
-        g.drawString(recordPontos3, ((800-boxIcon.getIconWidth())/2)+190, 430);
-        g.drawString(recordJogador3, ((800-boxIcon.getIconWidth())/2)+240, 430);
+        g.setFont(new Font("SansSerif", Font.PLAIN, 45));
+        g.drawString(Float.toString(points.getPoints()), 440, 256);
+        g.setFont(new Font("SansSerif", Font.PLAIN, 35));
+        g.drawString(recordPontos, 375, 460);
+        g.drawString(recordPontos2, 255, 460);
+        g.drawString(recordPontos3, 490, 460);
+        g.setFont(new Font("SansSerif", Font.PLAIN, 23));
+        g.drawString(recordJogador, 350, 350);        
+        g.drawString(recordJogador2, 230, 350);        
+        g.drawString(recordJogador3, 465, 350);
         points.setPoints(0);       
         this.add(jButton1);
         jButton1.grabFocus();
