@@ -14,6 +14,7 @@ public class Doge extends Sprite {
     private double dy;
     private boolean subindo;
     private int tempoSubindo;
+    private boolean foraDaTela;
 
     public Doge(int x, int y) {
         super(x, y);
@@ -45,9 +46,17 @@ public class Doge extends Sprite {
             subindo = false;
             tempoSubindo = 0;
         }
-        if (y > 550) {
-            y = 550;
+        if (y >= 565 || y<=-1) {
+            System.out.println("776");
+            foraDaTela=true;
         }
+    }
+    
+    public Boolean getForaDaTela(){
+        return foraDaTela;
+    }
+    public void setForaDaTela(boolean x){
+        foraDaTela=x;
     }
 
     public void jump() {

@@ -264,8 +264,9 @@ public class Board extends JPanel implements ActionListener {
     	}
         Rectangle colisaoJogador = doge.getBounds();
         doge.gotBonus(bonus);
-        if(Wall.colide(walls,colisaoJogador)){
+        if(Wall.colide(walls,colisaoJogador) || doge.getForaDaTela()){
             ingame = false;
+            doge.setForaDaTela(false);
             somColisao.play();
             points.setRecord();
             timer.stop();
