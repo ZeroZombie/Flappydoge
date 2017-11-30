@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 package tentativa1;
-import java.awt.Image;
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
-/**
- *
- * @author pepej
- */
+
 public class Wall extends Sprite {
     private boolean visible;
     private boolean passada;
