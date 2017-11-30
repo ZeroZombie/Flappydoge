@@ -51,15 +51,27 @@ public class Score {
               for (int subs=2; subs> cont; subs--){
                   records[subs] = records[subs-1];
               }
-              Points novo;
-              do{
-              novo = new Points(JOptionPane.showInputDialog(null, "Insira seu nome:"),point);
-              } while(novo.getJogador()==null);
+              Points novo = new Points(inputNomeDoJogador(), point);
+              
               records[cont] = novo;
               return;
           } 
        }
         
+    }
+    
+    private String inputNomeDoJogador() {
+        String nomeJogador = 
+        JOptionPane.showInputDialog(null,
+                "Insira seu nome (mínimo de 3 caracteres):");
+        
+        while (nomeJogador.length() < 3) {
+            nomeJogador =
+            JOptionPane.showInputDialog(null,
+                    "Insira seu nome (Eu disse TRÊS CARACTERES!):");
+        }
+        
+        return nomeJogador.substring(0, 3);
     }
 
 
