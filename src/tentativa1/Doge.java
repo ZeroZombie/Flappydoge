@@ -14,19 +14,21 @@ public class Doge extends Sprite {
     private double dy;
     private boolean subindo;
     private int tempoSubindo;
-
+    private int imgAtual;
+    
     public Doge(int x, int y) {
         super(x, y);
 
-        initCraft();
+        initDoge();
     }
 
-    private void initCraft() {
+    public void initDoge() {
         dy = 3;
         loadImage("src/resources/copybird01.png");
         getImageDimensions();
         subindo = false;
         tempoSubindo = 0;
+        imgAtual = 1;
     }
 
     public void move() {
@@ -60,10 +62,16 @@ public class Doge extends Sprite {
     public void gotBonus(Bonus bonus){
         if (this.getBounds().intersects(bonus.getBounds())){
             setImage(bonus.getImage());
+            bonus.pego();
+            imgAtual = bonus.getNumImg();
         }
     }
     
     private void setImage(Image image){
         this.image = image;
+    }
+    
+    public int getImgAtual(){
+        return imgAtual;
     }
 }
