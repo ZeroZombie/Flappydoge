@@ -48,7 +48,6 @@ public class Doge extends Sprite {
             tempoSubindo = 0;
         }
         if (y >= 565 || y<=-1) {
-            System.out.println("776");
             foraDaTela=true;
         }
     }
