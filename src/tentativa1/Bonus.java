@@ -10,12 +10,22 @@ package tentativa1;
  * @author labccet
  */
 public class Bonus extends Sprite{
-    Bonus(int x, int y){
+    private int numImg;
+    Bonus(int x, int y, int atual){
         super(x,y);
-        loadImage(Gerador.imageBonus());
+        numImg = Gerador.imageBonus(atual);
+        loadImage("src/resources/copybird0"+numImg+".png");
         getImageDimensions();
     }
     public void move(float velocidade){
         x -= velocidade;
+    }
+    
+    public void pego(){
+        x = -60;
+    }
+    
+    public int getNumImg(){
+        return numImg;
     }
 }

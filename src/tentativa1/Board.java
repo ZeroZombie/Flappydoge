@@ -101,7 +101,8 @@ public class Board extends JPanel implements ActionListener {
         generator = 0;
         points.setPoints(0);
         ingame = true;
-        bonus = new Bonus(-50,-50);
+        bonus = new Bonus(-50,-50,1);
+        doge.initDoge();
         Gerador.gerarParedes(walls,500);
         Gerador.gerarParedes(walls,800);
         
@@ -219,7 +220,7 @@ public class Board extends JPanel implements ActionListener {
             generator=0;
             Gerador.gerarParedes(walls,800);
             if (points.getPoints()%5==0)
-                bonus = Gerador.gerarBonus(1000);
+                bonus = Gerador.gerarBonus(1000,doge.getImgAtual());
         }
 
         }
