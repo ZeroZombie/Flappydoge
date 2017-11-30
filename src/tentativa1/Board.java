@@ -128,7 +128,7 @@ public class Board extends JPanel implements ActionListener {
         } else {
 
             try {
-                drawGameOver(g);
+                GameOver.drawGameOver(g, this);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -154,39 +154,10 @@ public class Board extends JPanel implements ActionListener {
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-        g.drawString("Pontos: " + points.getPoints(), 5, 15);
+        g.drawString("Pontos: " + points.getPoints(), 5, 25);
     }
 
-    private void drawGameOver(Graphics g) throws InterruptedException {        
-        setOpaque(true);
-        g.drawImage(background, 0, 0, null);
-        gameOverLabel.setBounds((800-gameOverIcon.getIconWidth())/2, 100, gameOverIcon.getIconWidth(), gameOverIcon.getIconHeight());
-        add(gameOverLabel);
-        ImageIcon boxIcon = new ImageIcon("src/resources/CaixaPontos.png");
-        Image box = boxIcon.getImage();
-        g.drawImage(box, (800-boxIcon.getIconWidth())/2, 200, null);
-        String recordPontos = Float.toString(points.getRecord()[0].getPontos());
-        String recordJogador = points.getRecord()[0].getJogador();
-        String recordPontos2 = Float.toString(points.getRecord()[1].getPontos());
-        String recordJogador2 = points.getRecord()[1].getJogador();
-        String recordPontos3 = Float.toString(points.getRecord()[2].getPontos());
-        String recordJogador3 = points.getRecord()[2].getJogador();
-
-        g.setFont(new Font("Century Gothic", Font.PLAIN, 45));
-        g.drawString(Float.toString(points.getPoints()), 440, 256);
-        g.setFont(new Font("Century Gothic", Font.PLAIN, 35));
-        g.drawString(recordPontos, 370, 460);
-        g.drawString(recordPontos2, 260, 460);
-        g.drawString(recordPontos3, 490, 460);
-        g.setFont(new Font("Century Gothic", Font.PLAIN, 23));
-        g.drawString(recordJogador, 360, 350);        
-        g.drawString(recordJogador2, 230, 350);        
-        g.drawString(recordJogador3, 465, 350);
-        points.setPoints(0);       
-        this.add(jButton1);
-        jButton1.grabFocus();
-        
-    }
+    
      private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {    
         remove(jButton1);
         remove(gameOverLabel);
@@ -287,5 +258,21 @@ public class Board extends JPanel implements ActionListener {
     
     public static AudioClip getSomPulo(){
     	return somPulo;
+    }
+    
+    public Score getPoints() {
+        return points;
+    }
+    
+    public Image getBackgroundBoard() {
+        return background;
+    }
+    
+    public ImageIcon getGameOverIcon() {
+        return gameOverIcon;
+    }
+
+    public JLabel getGameOverLabel() {
+        return gameOverLabel;
     }
 }

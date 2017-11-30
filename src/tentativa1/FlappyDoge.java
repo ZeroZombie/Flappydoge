@@ -5,14 +5,8 @@
  */
 package tentativa1;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
+import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -24,11 +18,6 @@ public class FlappyDoge extends JFrame {
     
     public FlappyDoge() {
         menu = new StartMenu(this);
-    	initUI();
-    }
-    
-    public FlappyDoge(int i) {
-        menu = new Board(urlColisao,urlPulo);
     	initUI();
     }
     
