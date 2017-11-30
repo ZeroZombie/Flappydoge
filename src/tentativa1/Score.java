@@ -51,7 +51,10 @@ public class Score {
               for (int subs=2; subs> cont; subs--){
                   records[subs] = records[subs-1];
               }
-              Points novo = new Points(JOptionPane.showInputDialog(null, "Insira seu nome:"),point);
+              Points novo;
+              do{
+              novo = new Points(JOptionPane.showInputDialog(null, "Insira seu nome:"),point);
+              } while(novo.getJogador()==null);
               records[cont] = novo;
               return;
           } 
