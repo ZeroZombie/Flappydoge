@@ -5,6 +5,8 @@
  */
 package tentativa1;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Image;
 public class Doge extends Sprite {
 
@@ -12,6 +14,8 @@ public class Doge extends Sprite {
     private boolean subindo;
     private int tempoSubindo;
     private int imgAtual;
+    private AudioClip SomPulo = Applet.newAudioClip(Board.class.getResource("SomPulo.wav"));
+    private AudioClip SomBonus = Applet.newAudioClip(Board.class.getResource("SomBonus.wav"));
     private boolean foraDaTela;
     public Doge(int x, int y) {
         super(x, y);
@@ -57,7 +61,7 @@ public class Doge extends Sprite {
     }
 
     public void jump() {
-            Board.getSomPulo().play();
+            SomPulo.play();
             dy = -3;
             subindo = true;
             tempoSubindo = 0;
@@ -65,6 +69,7 @@ public class Doge extends Sprite {
     }
     public void gotBonus(Bonus bonus){
         if (this.getBounds().intersects(bonus.getBounds())){
+            SomBonus.play();
             setImage(bonus.getImage());
             bonus.pego();
             imgAtual = bonus.getNumImg();

@@ -49,22 +49,15 @@ public class Board extends JPanel implements ActionListener {
     private final int DELAY = 10;
     private Score points;
     private float generator;
-    private URL urlColisao;
-    private URL urlPulo;
-    private AudioClip somColisao;
-    private static AudioClip somPulo;
+    private AudioClip somColisao = Applet.newAudioClip(Board.class.getResource("SomColisao.wav"));
     private ImageIcon gameOverIcon = new ImageIcon(getClass().getResource("/resources/GameOverPNG.png")); //Imagem da label de Game Over
     private JLabel gameOverLabel = new JLabel(gameOverIcon); //Label de Game Over
 		
 
     private final int[][] pos = {{0, 470}};
 
-    public Board(URL urlColisao, URL urlPulo) {
-        setLayout(null);
-        this.urlColisao = urlColisao;
-        this.urlPulo = urlPulo;
-        this.somPulo = Applet.newAudioClip(urlPulo);
-        this.somColisao = Applet.newAudioClip(urlColisao);
+    public Board() {
+        setLayout(null);        
         deleteWalls = new ArrayList<>();
         addKeyListener(new TAdapter());
         setFocusable(true);
@@ -252,10 +245,6 @@ public class Board extends JPanel implements ActionListener {
         	doge.jump();
             }
         }
-    }
-    
-    public static AudioClip getSomPulo(){
-    	return somPulo;
     }
     
     public Score getPoints() {

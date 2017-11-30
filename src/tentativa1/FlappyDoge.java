@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 public class FlappyDoge extends JFrame {
 	
     JPanel menu;
-    URL urlColisao = Board.class.getResource("SomColisao.wav");
-    URL urlPulo = Board.class.getResource("SomPulo.wav");
     
     public FlappyDoge() {
         menu = new StartMenu(this);
@@ -32,7 +30,7 @@ public class FlappyDoge extends JFrame {
     }
     public void switchPanel(){
     	remove(menu);
-        menu = new Board(urlColisao,urlPulo);
+        menu = new Board();
         add(menu);
         menu.requestFocusInWindow();
         pack();
