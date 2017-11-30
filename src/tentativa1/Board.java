@@ -152,16 +152,8 @@ public class Board extends JPanel implements ActionListener {
         g.drawImage(bonus.getImage(), bonus.getX(), bonus.getY(), this);
 
         g.setColor(Color.BLACK);
-        g.drawString("Score: " + points.getPoints(), 5, 15);
-        g.drawString("Record: " + 
-                (points.getRecord()[0] == null? "" : points.getRecord()[0].getJogador()),
-                 5, 30);
-        g.drawString("Record: " + 
-                (points.getRecord()[1] == null? "" : points.getRecord()[1].getJogador()),
-                 5, 45);
-        g.drawString("Record: " + 
-                (points.getRecord()[2] == null? "" : points.getRecord()[2].getJogador()),
-                 5, 60);
+        g.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+        g.drawString("Pontos: " + points.getPoints(), 5, 15);
     }
 
     private void drawGameOver(Graphics g) throws InterruptedException {        
@@ -179,14 +171,14 @@ public class Board extends JPanel implements ActionListener {
         String recordPontos3 = Float.toString(points.getRecord()[2].getPontos());
         String recordJogador3 = points.getRecord()[2].getJogador();
 
-        g.setFont(new Font("SansSerif", Font.PLAIN, 45));
+        g.setFont(new Font("Century Gothic", Font.PLAIN, 45));
         g.drawString(Float.toString(points.getPoints()), 440, 256);
-        g.setFont(new Font("SansSerif", Font.PLAIN, 35));
-        g.drawString(recordPontos, 375, 460);
-        g.drawString(recordPontos2, 255, 460);
+        g.setFont(new Font("Century Gothic", Font.PLAIN, 35));
+        g.drawString(recordPontos, 370, 460);
+        g.drawString(recordPontos2, 260, 460);
         g.drawString(recordPontos3, 490, 460);
-        g.setFont(new Font("SansSerif", Font.PLAIN, 23));
-        g.drawString(recordJogador, 350, 350);        
+        g.setFont(new Font("Century Gothic", Font.PLAIN, 23));
+        g.drawString(recordJogador, 360, 350);        
         g.drawString(recordJogador2, 230, 350);        
         g.drawString(recordJogador3, 465, 350);
         points.setPoints(0);       
