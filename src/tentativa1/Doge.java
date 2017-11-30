@@ -6,9 +6,6 @@
 package tentativa1;
 
 import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-
 public class Doge extends Sprite {
 
     private double dy;
