@@ -143,7 +143,7 @@ public class Board extends JPanel implements ActionListener {
         
         g.drawImage(bonus.getImage(), bonus.getX(), bonus.getY(), this);
 
-        g.setColor(Color.BLACK);
+        g.setColor(Color.DARK_GRAY);
         g.setFont(new Font("Century Gothic", Font.PLAIN, 20));
         g.drawString("Pontos: " + points.getPoints(), 5, 25);
     }
