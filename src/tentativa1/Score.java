@@ -49,13 +49,13 @@ public class Score {
     public void setRecord() {
        for(int cont=0; cont<3; cont++) {
           if(records[cont]==null || records[cont].getPontos()<point){
-              for (int subs=2; subs> cont; subs--){
-                  records[subs] = records[subs-1];
-              }
-              Points novo = new Points(inputNomeDoJogador(), point);
+            for (int subs=2; subs> cont; subs--){
+                records[subs] = records[subs-1];
+            }
+            Points novo = new Points(inputNomeDoJogador(), point);
               
-              records[cont] = novo;
-              return;
+            records[cont] = novo;
+            return;
           } 
        }
         
@@ -65,7 +65,7 @@ public class Score {
         String nomeJogador = 
         JOptionPane.showInputDialog(null,
                 "Insira seu nome (mínimo de 3 caracteres):");
-        
+        if (nomeJogador==null) return "";
         while (nomeJogador.length() < 3) {
             nomeJogador =
             JOptionPane.showInputDialog(null,
