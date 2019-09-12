@@ -1,4 +1,5 @@
 # Flappydoge
-A java game inspired on flappy bird!
-You can download the zip and execute the .jar file or create a project and drop the paste "src" there and run the "main.java".
-Good game!
+Réplica do famoso jogo para celular "Flappy Bird", desenvolvido em Java, como projeto para a disciplina Técnicas de Programação 2, em 2017.2.
+Instruções:
+  - Baixar o zip do projeto;
+  - Executar o arquivo "Flappydoge.jar"
